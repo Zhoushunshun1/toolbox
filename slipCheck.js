@@ -1,21 +1,19 @@
-export class SlipCheck {
-  constructor(id, imgId, event, imgUrl = 'http://qin8rsxdv.hn-bkt.clouddn.com/qrCodeBg.png') {
-    this.id = id
-    this.imgId = imgId
-    this.imgUrl = imgUrl
-    this.mainDom = {}
-    this.bg = {}
-    this.width = 400
-    this.height = 0
-    this.blockDom = ''
-    this.reslut = false
-    this.block = ''
-    this.img = {}
-    this.slider = { mx: 0, bx: 0 }
-    this.event = event
-  }
+export function SlipCheck(id, imgId, event, imgUrl = 'http://qin8rsxdv.hn-bkt.clouddn.com/qrCodeBg.png') {
+  this.id = id
+  this.imgId = imgId
+  this.imgUrl = imgUrl
+  this.mainDom = {}
+  this.bg = {}
+  this.width = 400
+  this.height = 0
+  this.blockDom = ''
+  this.reslut = false
+  this.block = ''
+  this.img = {}
+  this.slider = { mx: 0, bx: 0 }
+  this.event = event
 
-  init = function() {
+  SlipCheck.prototype.init = function() {
     //生成指定区间的随机数
     const random = function(min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min)
@@ -29,7 +27,7 @@ export class SlipCheck {
   }
 
   // 绘制
-  draw = function(mx = 200, bx = 20, y = 50) {
+  SlipCheck.prototype.draw = function(mx = 200, bx = 20, y = 50) {
     this.mainDom = document.querySelector('#codeImg')
     this.bg = this.mainDom.getContext('2d')
     this.width = this.mainDom.width
@@ -61,7 +59,7 @@ export class SlipCheck {
     this.drawBlock(this.bg, mainxy, 'fill')
     this.drawBlock(this.block, blockxy, 'clip')
   }
-  drawBlock = function(ctx, xy = { x: 150, y: 80, r: 9 }, type) {
+  SlipCheck.prototype.drawBlock = function(ctx, xy = { x: 150, y: 80, r: 9 }, type) {
     const x = xy.x,
       y = xy.y,
       r = xy.r,
@@ -91,7 +89,7 @@ export class SlipCheck {
     ctx.globalCompositeOperation = 'xor'
   }
   //鼠标按下
-  drag = function(e) {
+  SlipCheck.prototype.drag = function(e) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this
     if (!this.reslut) {
@@ -132,7 +130,7 @@ export class SlipCheck {
       document.addEventListener('mouseup', up)
     }
   }
-  checkStatus = function(type = 0) {
+  SlipCheck.prototype.checkStatus = function(type = 0) {
     if (!this.reslut) {
       this.bg.fillStyle = 'rgba(255, 255, 255, 0.7)'
       this.bg.fillRect(0, 0, this.width, this.height)
