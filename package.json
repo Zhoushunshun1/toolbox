@@ -1,0 +1,11 @@
+{
+  "name": "slip_check",
+  "version": "1.0.1",
+  "description": "滑动验证码",
+  "main": "slipCheck.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "周顺顺",
+  "license": "ISC"
+}
