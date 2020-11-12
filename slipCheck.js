@@ -37,7 +37,11 @@ export function SlipCheck(id, imgId, event, imgUrl = 'http://qin8rsxdv.hn-bkt.cl
     const mousedownEvent = function(e) {
       this.drag(e)
     }
+    const touchstartEvent = function(e) {
+      this.drag(e,1)
+    }
     this.blockDom.addEventListener('mousedown', mousedownEvent.bind(this))
+    this.blockDom.addEventListener('touchstart', touchstartEvent.bind(this))
     this.blockDom.style.position = 'absolute'
     this.blockDom.style.zIndex = 4000
     this.blockDom.style.left = 0
@@ -89,7 +93,7 @@ export function SlipCheck(id, imgId, event, imgUrl = 'http://qin8rsxdv.hn-bkt.cl
     ctx.globalCompositeOperation = 'xor'
   }
   //鼠标按下
-  SlipCheck.prototype.drag = function(e) {
+ SlipCheck.prototype.drag = function(e,type = 0) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this
     if (!this.reslut) {
@@ -108,6 +112,8 @@ export function SlipCheck(id, imgId, event, imgUrl = 'http://qin8rsxdv.hn-bkt.cl
       const up = function() {
         document.removeEventListener('mousemove', move)
         document.removeEventListener('mouseup', up)
+        document.removeEventListener('touchmove', move)
+        document.removeEventListener('touchend', up)
         // dom.style.left = ''`
         const max = checkx + 10
         const min = checkx - 10
@@ -124,10 +130,15 @@ export function SlipCheck(id, imgId, event, imgUrl = 'http://qin8rsxdv.hn-bkt.cl
         that.blockDom.addEventListener('mousedown', function() {
           that.reslut = true
         })
+        that.blockDom.addEventListener('touchend', function() {
+          that.reslut = true
+        })
       }
 
       document.addEventListener('mousemove', move)
       document.addEventListener('mouseup', up)
+      document.addEventListener('touchmove', move)
+      document.addEventListener('touchend', up)
     }
   }
   SlipCheck.prototype.checkStatus = function(type = 0) {
