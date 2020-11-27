@@ -1,4 +1,4 @@
-export function SlipCheck(id, imgId, event, imgUrl = 'http://qin8rsxdv.hn-bkt.clouddn.com/qrCodeBg.png') {
+export function SlipCheck(id, imgId, event, imgUrl = 'http://file.idiot-zs.top/qrCodeBg.png') {
   this.id = id
   this.imgId = imgId
   this.imgUrl = imgUrl
